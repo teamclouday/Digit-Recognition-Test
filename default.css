@@ -11,9 +11,33 @@
 
 #board_board
 {
-    background-color: aquamarine;
+    border-style: dashed;
+    background-color: white;
     display: block;
-    margin-left: 20%;
+    margin-left: 200px;
     width: 400px;
     height: 400px;
+}
+
+#buttons
+{
+    display: block;
+    margin-left: 200px;
+    margin-top: 10px;
+}
+
+#button_input
+{
+    width: 180px;
+    height: 50px;
+    margin-left: 10px;
+    font-size: 25px;
+}
+
+#button_clear
+{
+    width: 180px;
+    height: 50px;
+    margin-left: 10px;
+    font-size: 25px;
 }
