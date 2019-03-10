@@ -85,9 +85,11 @@ function refresh(running=true)
                     counter += checkColor(i-1, j-1);
                     counter += checkColor(i-1, j+1);
                     counter += checkColor(i-1, j);
+                    counter += checkColor(i+1, j);
                     counter += checkColor(i+1, j-1);
-                    counter += checkColor(i-1, j-1);
+                    counter += checkColor(i+1, j+1);
                     counter += checkColor(i, j-1);
+                    counter += checkColor(i, j+1);
                     if(counter != 0)
                     {
                         let newColor = Math.floor((counter * 250 + (8-counter) * 129) / 8);
@@ -104,7 +106,7 @@ function refresh(running=true)
 function checkColor(i, j)
 {
     if(i < 0 || j < 0 || i > 19 || j > 19)
-        return;
+        return 0;
     if(rects[i + 20 * j].isWhite)
         return 1;
     else
@@ -127,6 +129,7 @@ function cvsDone()
     myCanvas.removeEventListener('mousemove', drawing);
     myCanvas.removeEventListener('mousemove', setDrawingResult);
     mousePos = [];
+    refresh();
 }
 function mouseOut()
 {
@@ -140,7 +143,9 @@ function drawing(e)
     let posX = e.clientX - 200;
     let posY = e.clientY - 200;
     let i = Math.floor(posX / 20);
-    let j = Math.floor(posY / 20) - 1;
+    let j = Math.floor(posY / 20);
+    if(i < 1 || i > 20 || j < 1 || j > 20)
+        return;
     mousePos.push(i);
     mousePos.push(j);
 }
@@ -151,7 +156,7 @@ function setDrawingResult()
     {
         let i = mousePos[0];
         let j = mousePos[1];
-        rects[i + 20 * j].setColor(250, true);
+        rects[i - 1 + 20 * (j - 1)].setColor(250, true);
         mousePos.shift();
         mousePos.shift();
         // fill the gap caused by mouse move event (important)
