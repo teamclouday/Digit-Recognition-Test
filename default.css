@@ -1,4 +1,19 @@
 #info
 {
     font-size: 18px;
+    line-height: 25px;
+}
+
+#board_title
+{
+    font-size: 20px;
+}
+
+#board_board
+{
+    background-color: aquamarine;
+    display: block;
+    margin-left: 20%;
+    width: 400px;
+    height: 400px;
 }
