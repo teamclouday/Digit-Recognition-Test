@@ -253,3 +253,20 @@ function clearCVS()
     }
     refresh();
 }
+
+async function genValues()
+{
+    let rectArray = [];
+    for(let i = 0; i < rects.length; i++)
+    {
+        let newNum = await convertNum(rects[i].r);
+        rectArray.push(newNum);
+    }
+    transferRects(rectArray);
+}
+
+function convertNum(number)
+{
+    //let epsilon = Math.random() * (0.02) - 0.01;
+    return (number - 129)/(250 - 129);
+}

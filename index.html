@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digit Recognition Test</title>
     <link rel="stylesheet" href="default.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/5.7.0/math.js" type="text/javascript"></script>
     <script src="default.js" type="text/javascript"></script>
+    <script src="model.js" type="text/javascript"></script>
 </head>
 <body>
     <!-- Title -->
@@ -28,10 +30,14 @@
             loadRectangles(); // load rects after canvas is done
         </script>
         <div id="buttons">
-            <input id="button_input" type="button" value="Input"/>
+            <input id="button_input" type="button" value="Input" onclick="genValues()"/>
             <input id="button_clear" type="button" value="Clear" onclick="clearCVS()"/>
         </div>
     </div>
     <hr>
+    <!-- output area -->
+    <div id="output">
+        
+    </div>
 </body>
 </html>
