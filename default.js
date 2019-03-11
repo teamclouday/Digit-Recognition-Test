@@ -21,6 +21,7 @@ class Rectangle
         this.r = 129;
         this.g = 129;
         this.b = 129;
+        this.realColor = 129;
         this.isWhite = false; // 0 means gray, 1 means absolute white
     }
 
@@ -45,6 +46,11 @@ class Rectangle
         this.g = color;
         this.b = color;
         this.isWhite = isWhite;
+    }
+
+    setRealColor(color)
+    {
+        this.realColor = color;
     }
 }
 
@@ -92,8 +98,9 @@ function refresh(running=true)
                     counter += checkColor(i, j+1);
                     if(counter != 0)
                     {
-                        let newColor = Math.floor((counter * 250 + (8-counter) * 129) / 8);
-                        thisRect.setColor(newColor);
+                        let newColor = (counter * 250 + (8-counter) * 129) / 8;
+                        thisRect.setColor(Math.floor(newColor));
+                        thisRect.setRealColor(newColor)
                     }
                 }
             }
@@ -157,6 +164,7 @@ function setDrawingResult()
         let i = mousePos[0];
         let j = mousePos[1];
         rects[i - 1 + 20 * (j - 1)].setColor(250, true);
+        rects[i - 1 + 20 * (j - 1)].setRealColor(250);
         mousePos.shift();
         mousePos.shift();
         // fill the gap caused by mouse move event (important)
@@ -249,6 +257,7 @@ function clearCVS()
         for(let j = 0; j < 20; j++)
         {
             rects[i + 20 * j].setColor(129);
+            rects[i + 20 * j].setRealColor(129);
         }
     }
     refresh();
@@ -259,7 +268,7 @@ async function genValues()
     let rectArray = [];
     for(let i = 0; i < rects.length; i++)
     {
-        let newNum = await convertNum(rects[i].r);
+        let newNum = await convertNum(rects[i].realColor);
         rectArray.push(newNum);
     }
     transferRects(rectArray);
@@ -268,5 +277,6 @@ async function genValues()
 function convertNum(number)
 {
     //let epsilon = Math.random() * (0.02) - 0.01;
-    return (number - 129)/(250 - 129);
+    let result = ((number - 129)/(250 - 129) > 0.3) ? 1 : 0;
+    return result;
 }
