@@ -11,14 +11,16 @@ var z3 = [];
 var w1 = [];
 var w2 = [];
 
+var myChart = undefined;
+
 async function transferRects(rectArray)
 {
     z1 = rectArray;
     a1 = [1].concat(z1);
     if(w1.length == 0)
     {
-        await getText("https://williamwuyantao.github.io/w1train4k.tex", 1);
-        await getText("https://williamwuyantao.github.io/w2train4k.tex", 2);
+        await getText("https://williamwuyantao.github.io/w1_all01_train4k.tex", 1);
+        await getText("https://williamwuyantao.github.io/w2_all01_train4k.tex", 2);
         await waitW();
     }
     else
@@ -146,4 +148,54 @@ function calcA3(zArr)
 function output()
 {
     console.log(a3);
+    var ctx = document.getElementById("myChart");
+    myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
+            datasets: [{
+                label: 'output',
+                data: a3,
+                backgroundColor: [
+                    'rgba(200, 100, 50, 0.5)',
+                    'rgba(200, 100, 50, 0.5)',
+                    'rgba(200, 100, 50, 0.5)',
+                    'rgba(200, 100, 50, 0.5)',
+                    'rgba(200, 100, 50, 0.5)',
+                    'rgba(200, 100, 50, 0.5)',
+                    'rgba(200, 100, 50, 0.5)',
+                    'rgba(200, 100, 50, 0.5)',
+                    'rgba(200, 100, 50, 0.5)',
+                    'rgba(200, 100, 50, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(250, 0, 0, 1)',
+                    'rgba(250, 0, 0, 1)',
+                    'rgba(250, 0, 0, 1)',
+                    'rgba(250, 0, 0, 1)',
+                    'rgba(250, 0, 0, 1)',
+                    'rgba(250, 0, 0, 1)',
+                    'rgba(250, 0, 0, 1)',
+                    'rgba(250, 0, 0, 1)',
+                    'rgba(250, 0, 0, 1)',
+                    'rgba(250, 0, 0, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+}
+
+function destroyChart()
+{
+    myChart.destroy();
 }
