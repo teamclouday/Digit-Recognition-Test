@@ -147,7 +147,7 @@ function mouseOut()
 // function that handles drawing
 function drawing(e)
 {
-    let posX = e.clientX - 200;
+    let posX = e.clientX - 10;
     let posY = e.clientY - 200;
     let i = Math.floor(posX / 20);
     let j = Math.floor(posY / 20);
@@ -261,6 +261,7 @@ function clearCVS()
         }
     }
     refresh();
+    destroyChart();
 }
 
 async function genValues()
@@ -277,6 +278,6 @@ async function genValues()
 function convertNum(number)
 {
     //let epsilon = Math.random() * (0.02) - 0.01;
-    let result = ((number - 129)/(250 - 129) > 0.3) ? 1 : 0;
+    let result = (number - 129)/(250 - 129);
     return result;
 }

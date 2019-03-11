@@ -6,6 +6,7 @@
     <title>Digit Recognition Test</title>
     <link rel="stylesheet" href="default.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/5.7.0/math.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js" type="text/javascript"></script>
     <script src="default.js" type="text/javascript"></script>
     <script src="model.js" type="text/javascript"></script>
 </head>
@@ -34,9 +35,11 @@
             <input id="button_clear" type="button" value="Clear" onclick="clearCVS()"/>
         </div>
     </div>
-    <hr>
-    <!-- output area -->
     <div id="output">
+        <!-- output area -->
+        <canvas id="myChart" height="400px" width="800px"></canvas>
     </div>
+    <div id="clear"></div>
+    <hr id="end">
 </body>
 </html>
