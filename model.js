@@ -197,5 +197,6 @@ function output()
 
 function destroyChart()
 {
-    myChart.destroy();
+    if(myChart !== undefined)
+        myChart.destroy();
 }
