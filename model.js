@@ -147,7 +147,11 @@ function calcA3(zArr)
 // final output
 function output()
 {
-    console.log(a3);
+    if(myChart != undefined)
+    {
+        myChart.destroy();
+        myChart = undefined;
+    }
     var ctx = document.getElementById("myChart");
     myChart = new Chart(ctx, {
         type: 'bar',
@@ -197,6 +201,6 @@ function output()
 
 function destroyChart()
 {
-    if(myChart !== undefined)
+    if(myChart != undefined)
         myChart.destroy();
 }
