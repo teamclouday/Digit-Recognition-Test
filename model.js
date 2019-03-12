@@ -19,8 +19,8 @@ async function transferRects(rectArray)
     a1 = [1].concat(z1);
     if(w1.length == 0)
     {
-        await getText("https://williamwuyantao.github.io/w1new.tex", 1);
-        await getText("https://williamwuyantao.github.io/w2new.tex", 2);
+        await getText("https://williamwuyantao.github.io/w1best.tex", 1);
+        await getText("https://williamwuyantao.github.io/w2best.tex", 2);
         await waitW();
     }
     else

@@ -1,5 +1,5 @@
 # Digit Recognition Test
-[Web Page Link](https://williamwuyantao.github.io/index.html)  
+[Web Page Link](https://williamwuyantao.github.io/)  
 
 ------
 
