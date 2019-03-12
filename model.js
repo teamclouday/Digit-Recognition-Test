@@ -15,12 +15,12 @@ var myChart = undefined;
 
 async function transferRects(rectArray)
 {
-    z1 = rectArray;
+    z1 = math.reshape(math.transpose(math.reshape(rectArray, [20, 20])), [400]);
     a1 = [1].concat(z1);
     if(w1.length == 0)
     {
-        await getText("https://williamwuyantao.github.io/w1_all01_train4k.tex", 1);
-        await getText("https://williamwuyantao.github.io/w2_all01_train4k.tex", 2);
+        await getText("https://williamwuyantao.github.io/w1new.tex", 1);
+        await getText("https://williamwuyantao.github.io/w2new.tex", 2);
         await waitW();
     }
     else
