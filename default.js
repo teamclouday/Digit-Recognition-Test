@@ -277,7 +277,5 @@ async function genValues()
 
 function convertNum(number)
 {
-    //let epsilon = Math.random() * (0.02) - 0.01;
-    let result = (number - 129)/(250 - 129);
-    return result;
+    return result = (number - 129)/(250 - 129);
 }
