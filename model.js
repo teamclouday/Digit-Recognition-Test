@@ -68,17 +68,15 @@ function loadW(file, num)
     }
     else if(num == 2)
     {
-        let lines = file.split('\n');
-        for(let i = 0; i < lines.length - 1; i++)
-        {
-            let nums = lines[i].split(",");
+        let nums = file.split('\n');
+        
             let innerArr = [];
             for(let j = 0; j < nums.length; j++)
             {
                 innerArr.push(parseFloat(nums[j]));
             }
             b1.push(innerArr);
-        }
+        
     }
     else if(num == 3)
     {
