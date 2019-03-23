@@ -57,7 +57,7 @@ function loadW(file, num)
         let lines = file.split('\n');
         for(let i = 0; i < lines.length - 1; i++)
         {
-            let nums = lines[i].split("&");
+            let nums = lines[i].split(",");
             let innerArr = [];
             for(let j = 0; j < nums.length; j++)
             {
@@ -71,7 +71,7 @@ function loadW(file, num)
         let lines = file.split('\n');
         for(let i = 0; i < lines.length - 1; i++)
         {
-            let nums = lines[i].split("&");
+            let nums = lines[i].split(",");
             let innerArr = [];
             for(let j = 0; j < nums.length; j++)
             {
@@ -85,7 +85,7 @@ function loadW(file, num)
         let lines = file.split('\n');
         for(let i = 0; i < lines.length - 1; i++)
         {
-            let nums = lines[i].split("&");
+            let nums = lines[i].split(",");
             let innerArr = [];
             for(let j = 0; j < nums.length; j++)
             {
@@ -99,7 +99,7 @@ function loadW(file, num)
         let lines = file.split('\n');
         for(let i = 0; i < lines.length - 1; i++)
         {
-            let nums = lines[i].split("&");
+            let nums = lines[i].split(",");
             let innerArr = [];
             for(let j = 0; j < nums.length; j++)
             {
@@ -113,7 +113,7 @@ function loadW(file, num)
         let lines = file.split('\n');
         for(let i = 0; i < lines.length - 1; i++)
         {
-            let nums = lines[i].split("&");
+            let nums = lines[i].split(",");
             let innerArr = [];
             for(let j = 0; j < nums.length; j++)
             {
@@ -127,7 +127,7 @@ function loadW(file, num)
         let lines = file.split('\n');
         for(let i = 0; i < lines.length - 1; i++)
         {
-            let nums = lines[i].split("&");
+            let nums = lines[i].split(",");
             let innerArr = [];
             for(let j = 0; j < nums.length; j++)
             {
