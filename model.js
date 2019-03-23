@@ -3,7 +3,6 @@
 // weight3 : 10  X 64
 // g(x) = 0 (if x <=0) ; x (if x>0)
 
-var a1 = [];
 var z1 = [];
 var a2 = [];
 var z2 = [];
@@ -41,7 +40,6 @@ async function transferRects(rectArray)
     }
     else
     {
-        await calcA1(z1);
         await calcZ2();
         await calcA2(z2);
         await calcZ3();
@@ -146,7 +144,6 @@ async function waitW()
 {
     if(w1.length != 0 && w2.length != 0 && w3.length != 0 && b1.length != 0 && b2.length != 0 && b3.length != 0)
     {
-        await calcA1(z1);
         await calcZ2();
         await calcA2(z2);
         await calcZ3();
@@ -177,24 +174,18 @@ function getText(url, num)
     }
 }
 
-function calcA1(zArr)
-{
-    a1 = [];
-    for(let i = 0; i < zArr.length; i++)
-    {
-        a_ele = (zArr[i]<0)? 0 : zArr[i] ;
-        a1.push(a_ele);
-    }
-    a1.unshift(1);
-}
-
 // calc Z2
 async function calcZ2()
 {
     if(z2.length == 0)
     {
         console.log("Calculating Z2...");
-        z2 = math.multiply(math.matrix(w1), a1).toArray();
+        z2 = math.multiply(math.matrix(w1), z1).toArray();
+        
+        for(var i=0; i< z2.length; i++) {
+            z2[i] += b1[i];
+        }
+
         await calcA2(z2);
         await calcZ3();
         await calcA3(z3);
@@ -216,7 +207,7 @@ function calcA2(zArr)
         a_ele = (zArr[i]<0)? 0 : zArr[i] ;
         a2.push(a_ele);
     }
-    a2.unshift(1);
+
 }
 
 async function calcZ3()
@@ -225,6 +216,11 @@ async function calcZ3()
     {
         console.log("Calculating Z3...");
         z3 = math.multiply(math.matrix(w2), a2).toArray();
+
+        for(var i=0; i< z3.length; i++) {
+            z3[i] += b2[i];
+        }
+
         await calcA3(z3);
         output();
     }
@@ -240,7 +236,7 @@ function calcA3(zArr)
     a3 = [];
     for(let i = 0; i < zArr.length; i++)
     {
-        a_ele = (z1Arr[i]<0)? 0 : z1Arr[i] ;
+        a_ele = (zArr[i]<0)? 0 : zArr[i] ;
         a3.push(a_ele);
     }
 }
@@ -251,6 +247,11 @@ async function calcZ4()
     {
         console.log("Calculating Z3...");
         z4 = math.multiply(math.matrix(w3), a3).toArray();
+
+        for(var i=0; i< z4.length; i++) {
+            z4[i] += b3[i];
+        }
+
         await calcA3(z4);
         output();
     }
@@ -266,7 +267,7 @@ function calcA4(zArr)
     a4 = [];
     for(let i = 0; i < zArr.length; i++)
     {
-        a_ele = (z1Arr[i]<0)? 0 : z1Arr[i] ;
+        a_ele = (zArr[i]<0)? 0 : zArr[i] ;
         a4.push(a_ele);
     }
 }
