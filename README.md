@@ -2,7 +2,7 @@
 [Web Page Link](https://williamwuyantao.github.io/)  
 
 2019.Mar.23th
-Version 3.0: recognition on 0 through 9 with satisfied accuracy
+* Version 3.0: recognition on 0 through 9 with satisfied accuracy
 ------
 
 ## Dependencies  
@@ -11,6 +11,6 @@ Version 3.0: recognition on 0 through 9 with satisfied accuracy
 
 ------
 ### Environment
-neural network is trained on Pytorch
-website performs matrix multiplication to give output probability
+* neural network is trained on Pytorch
+* website javascript code performs matrix multiplication
 ------
