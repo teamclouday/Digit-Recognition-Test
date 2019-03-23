@@ -264,7 +264,6 @@ function clearCVS()
     refresh();
     destroyChart();
 }
-
 async function genValues()
 {
     let rectArray = [];
