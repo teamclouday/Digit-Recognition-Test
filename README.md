@@ -1,12 +1,16 @@
 # Digit Recognition Test
 [Web Page Link](https://williamwuyantao.github.io/)  
 
+2019.Mar.23th
+Version 3.0: recognition on 0 through 9 with satisfied accuracy
 ------
 
-### Dependencies  
+## Dependencies  
 * [math.js](https://mathjs.org/)  
 * [Chart.js](https://www.chartjs.org/)  
 
 ------
-
-Version 1.0: Can recognize 1, 2, 3, 4, 5, 6, 8, 0
+### Environment
+neural network is trained on Pytorch
+website performs matrix multiplication to give output probability
+------
