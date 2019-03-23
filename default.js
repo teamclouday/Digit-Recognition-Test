@@ -1,7 +1,7 @@
 // grey  RGB: (129,129,129)
 // white RGB: (250,250,250)
 
-// array of rects (20 X 20 = 400)
+// array of rects (28 X 28 = 784)
 var rects = [];
 // my canvas
 var myCanvas = undefined;
@@ -63,9 +63,9 @@ function loadRectangles()
     myCanvas.addEventListener('mouseup', cvsDone, false);
     cvsCtx = myCanvas.getContext("2d");
     // create rects
-    for(let i = 0; i < 28; i++)
+    for(let i = 0; i < len; i++)
     {
-        for(let j = 0; j < 28; j++)
+        for(let j = 0; j < len; j++)
         {
             let pX = j * rectWH;
             let pY = i * rectWH;
@@ -79,11 +79,11 @@ function loadRectangles()
 // refresh rects on canvas
 function refresh(running=true)
 {
-    for(let i = 0; i < 28; i++)
+    for(let i = 0; i < len; i++)
     {
-        for(let j = 0; j < 28; j++)
+        for(let j = 0; j < len; j++)
         {
-            let thisRect = rects[i + 28 * j];
+            let thisRect = rects[i + len * j];
             if(running)
             {
                 if(!thisRect.isWhite)
@@ -113,9 +113,9 @@ function refresh(running=true)
 // check the gray color
 function checkColor(i, j)
 {
-    if(i < 0 || j < 0 || i > 27 || j > 27)
+    if(i < 0 || j < 0 || i >= len || j >= len)
         return 0;
-    if(rects[i + 28 * j].isWhite)
+    if(rects[i + len * j].isWhite)
         return 1;
     else
         return 0;
@@ -152,7 +152,7 @@ function drawing(e)
     let posY = e.clientY - 200;
     let i = Math.floor(posX / 15);
     let j = Math.floor(posY / 15);
-    if(i < 1 || i > 28 || j < 1 || j > 28)
+    if(i < 1 || i > len || j < 1 || j > len)
         return;
     mousePos.push(i);
     mousePos.push(j);
@@ -164,8 +164,8 @@ function setDrawingResult()
     {
         let i = mousePos[0];
         let j = mousePos[1];
-        rects[i - 1 + 28 * (j - 1)].setColor(250, true);
-        rects[i - 1 + 28 * (j - 1)].setRealColor(250);
+        rects[i - 1 + len * (j - 1)].setColor(250, true);
+        rects[i - 1 + len * (j - 1)].setRealColor(250);
         mousePos.shift();
         mousePos.shift();
         // fill the gap caused by mouse move event (important)
@@ -253,12 +253,12 @@ function setDrawingResult()
 function clearCVS()
 {
     console.log("clear");
-    for(let i = 0; i < 28; i++)
+    for(let i = 0; i < len; i++)
     {
-        for(let j = 0; j < 28; j++)
+        for(let j = 0; j < len; j++)
         {
-            rects[i + 28 * j].setColor(129);
-            rects[i + 28 * j].setRealColor(129);
+            rects[i + len * j].setColor(129);
+            rects[i + len * j].setRealColor(129);
         }
     }
     refresh();

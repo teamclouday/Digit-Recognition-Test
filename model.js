@@ -1,4 +1,4 @@
-// w1 1: 25 X 401
+// w1 1: 25 X 785
 // w2 2: 10 X 26
 // g(x) = 1 / (1 + e^(-x))
 
@@ -16,14 +16,15 @@ var size=len*len;
 
 var myChart = undefined;
 
+
 async function transferRects(rectArray)
 {
     z1 = math.reshape(math.transpose(math.reshape(rectArray, [len, len])), [size]);
     a1 = [1].concat(z1);
     if(w1.length == 0)
     {
-        await getText("https://williamwuyantao.github.io/w1best.tex", 1);
-        await getText("https://williamwuyantao.github.io/w2best.tex", 2);
+        await getText("https://williamwuyantao.github.io/w1.tex", 1);
+        await getText("https://williamwuyantao.github.io/w2.tex", 2);
         await waitW();
     }
     else
