@@ -1,15 +1,22 @@
-// w1 1: 25 X 785
-// w2 2: 10 X 26
-// g(x) = 1 / (1 + e^(-x))
+// weight1 : 128 X 784
+// weight2 : 64  X 128
+// weight3 : 10  X 64
+// g(x) = 0 (if x <=0) ; x (if x>0)
 
 var a1 = [];
-var a2 = [];
-var a3 = [];
 var z1 = [];
+var a2 = [];
 var z2 = [];
+var a3 = [];
 var z3 = [];
+var a4 = [];
+var z4 = [];
 var w1 = [];
 var w2 = [];
+var w3 = [];
+var b1 = [];
+var b2 = [];
+var b3 = [];
 
 var len=28;
 var size=len*len;
@@ -20,22 +27,31 @@ var myChart = undefined;
 async function transferRects(rectArray)
 {
     z1 = rectArray;
-    
+
     //math.reshape(math.transpose(math.reshape(rectArray, [len, len])), [size]);
-    a1 = [1].concat(z1);
     if(w1.length == 0)
     {
-        await getText("https://williamwuyantao.github.io/w1.tex", 1);
-        await getText("https://williamwuyantao.github.io/w2.tex", 2);
+        await getText("https://williamwuyantao.github.io/pytorch_weight1.tex", 1);
+        await getText("https://williamwuyantao.github.io/pytorch_bias1.tex", 2);
+        await getText("https://williamwuyantao.github.io/pytorch_weight2.tex", 3);
+        await getText("https://williamwuyantao.github.io/pytorch_bias2.tex", 4);
+        await getText("https://williamwuyantao.github.io/pytorch_weight3.tex", 5);
+        await getText("https://williamwuyantao.github.io/pytorch_bias3.tex", 6);
         await waitW();
     }
     else
     {
+        await calcA1(z1);
         await calcZ2();
+        await calcA2(z2);
+        await calcZ3();
+        await calcA3(z3);
+        await calcZ4();
+        await calcA4(z4);
     }
 }
 
-// load w1 and w2 from file
+// load w123 and b123 from file
 function loadW(file, num)
 {
     if(num == 1)
@@ -52,7 +68,21 @@ function loadW(file, num)
             w1.push(innerArr);
         }
     }
-    else
+    else if(num == 2)
+    {
+        let lines = file.split('\n');
+        for(let i = 0; i < lines.length - 1; i++)
+        {
+            let nums = lines[i].split("&");
+            let innerArr = [];
+            for(let j = 0; j < nums.length; j++)
+            {
+                innerArr.push(parseFloat(nums[j]));
+            }
+            b1.push(innerArr);
+        }
+    }
+    else if(num == 3)
     {
         let lines = file.split('\n');
         for(let i = 0; i < lines.length - 1; i++)
@@ -66,14 +96,63 @@ function loadW(file, num)
             w2.push(innerArr);
         }
     }
+    else if(num == 4)
+    {
+        let lines = file.split('\n');
+        for(let i = 0; i < lines.length - 1; i++)
+        {
+            let nums = lines[i].split("&");
+            let innerArr = [];
+            for(let j = 0; j < nums.length; j++)
+            {
+                innerArr.push(parseFloat(nums[j]));
+            }
+            b2.push(innerArr);
+        }
+    }
+    else if(num == 5)
+    {
+        let lines = file.split('\n');
+        for(let i = 0; i < lines.length - 1; i++)
+        {
+            let nums = lines[i].split("&");
+            let innerArr = [];
+            for(let j = 0; j < nums.length; j++)
+            {
+                innerArr.push(parseFloat(nums[j]));
+            }
+            w3.push(innerArr);
+        }
+    }
+    else if(num == 6)
+    {
+        let lines = file.split('\n');
+        for(let i = 0; i < lines.length - 1; i++)
+        {
+            let nums = lines[i].split("&");
+            let innerArr = [];
+            for(let j = 0; j < nums.length; j++)
+            {
+                innerArr.push(parseFloat(nums[j]));
+            }
+            b3.push(innerArr);
+        }
+    }
+    
 }
 
 // wait for W1 and W2 to set
 async function waitW()
 {
-    if(w1.length != 0 && w2.length != 0)
+    if(w1.length != 0 && w2.length != 0 && w3.length != 0 && b1.length != 0 && b2.length != 0 && b3.length != 0)
     {
+        await calcA1(z1);
         await calcZ2();
+        await calcA2(z2);
+        await calcZ3();
+        await calcA3(z3);
+        await calcZ4();
+        await calcA4(z4);
     }
     else
     {
@@ -98,6 +177,17 @@ function getText(url, num)
     }
 }
 
+function calcA1(zArr)
+{
+    a1 = [];
+    for(let i = 0; i < zArr.length; i++)
+    {
+        a_ele = (zArr[i]<0)? 0 : zArr[i] ;
+        a1.push(a_ele);
+    }
+    a1.unshift(1);
+}
+
 // calc Z2
 async function calcZ2()
 {
@@ -107,6 +197,9 @@ async function calcZ2()
         z2 = math.multiply(math.matrix(w1), a1).toArray();
         await calcA2(z2);
         await calcZ3();
+        await calcA3(z3);
+        await calcZ4();
+        await calcA4(z4);
     }
     else
     {
@@ -120,7 +213,8 @@ function calcA2(zArr)
     a2 = [];
     for(let i = 0; i < zArr.length; i++)
     {
-        a2.push((1 / (1 + Math.pow(Math.E, -zArr[i]))));
+        a_ele = (zArr[i]<0)? 0 : zArr[i] ;
+        a2.push(a_ele);
     }
     a2.unshift(1);
 }
@@ -146,7 +240,34 @@ function calcA3(zArr)
     a3 = [];
     for(let i = 0; i < zArr.length; i++)
     {
-        a3.push((1 / (1 + Math.pow(Math.E, -zArr[i]))));
+        a_ele = (z1Arr[i]<0)? 0 : z1Arr[i] ;
+        a3.push(a_ele);
+    }
+}
+
+async function calcZ4()
+{
+    if(z3.length == 0)
+    {
+        console.log("Calculating Z3...");
+        z4 = math.multiply(math.matrix(w3), a3).toArray();
+        await calcA3(z4);
+        output();
+    }
+    else
+    {
+        z4 = [];
+        calcZ4();
+    }
+}
+
+function calcA4(zArr)
+{
+    a4 = [];
+    for(let i = 0; i < zArr.length; i++)
+    {
+        a_ele = (z1Arr[i]<0)? 0 : z1Arr[i] ;
+        a4.push(a_ele);
     }
 }
 
@@ -162,10 +283,10 @@ function output()
     myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
+            labels: ["0","1", "2", "3", "4", "5", "6", "7", "8", "9"],
             datasets: [{
                 label: 'output',
-                data: a3,
+                data: a4,
                 backgroundColor: [
                     'rgba(200, 100, 50, 0.5)',
                     'rgba(200, 100, 50, 0.5)',
