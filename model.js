@@ -26,6 +26,9 @@ var myChart = undefined;
 async function transferRects(rectArray)
 {
     z1 = rectArray;
+    for(let j=0;j<z1.length;j++){
+        z1[j] = (z1[j]-0.5)/0.5;
+    }
 
     //math.reshape(math.transpose(math.reshape(rectArray, [len, len])), [size]);
     if(w1.length == 0)
@@ -69,12 +72,10 @@ function loadW(file, num)
     else if(num == 2)
     {
         let nums = file.split('\n');
-        let innerArr = [];
         for(let j = 0; j < nums.length; j++)
         {
-            innerArr.push(parseFloat(nums[j]));
+            b1.push(parseFloat(nums[j]));
         }
-        b1.push(innerArr);
         
     }
     else if(num == 3)
@@ -94,12 +95,10 @@ function loadW(file, num)
     else if(num == 4)
     {
         let nums = file.split('\n');
-        let innerArr = [];
         for(let j = 0; j < nums.length; j++)
         {
-            innerArr.push(parseFloat(nums[j]));
+            b2.push(parseFloat(nums[j]));
         }
-        b2.push(innerArr);
         
     }
     else if(num == 5)
@@ -119,12 +118,10 @@ function loadW(file, num)
     else if(num == 6)
     {
         let nums = file.split('\n');
-        let innerArr = [];
         for(let j = 0; j < nums.length; j++)
         {
-            innerArr.push(parseFloat(nums[j]));
+            b3.push(parseFloat(nums[j]));
         }
-        b3.push(innerArr);
     }
     
 }
@@ -173,7 +170,8 @@ async function calcZ2()
         z2 = math.multiply(math.matrix(w1), z1).toArray();
         
         for(var i=0; i< z2.length; i++) {
-            z2[i] += b1[i];
+            var add = b1[i]
+            z2[i] += add;
         }
 
         await calcA2(z2);
@@ -233,7 +231,7 @@ function calcA3(zArr)
 
 async function calcZ4()
 {
-    if(z3.length == 0)
+    if(z4.length == 0)
     {
         console.log("Calculating Z3...");
         z4 = math.multiply(math.matrix(w3), a3).toArray();
@@ -255,10 +253,20 @@ async function calcZ4()
 function calcA4(zArr)
 {
     a4 = [];
+    sum=0.0;
+    sump3=0.0
     for(let i = 0; i < zArr.length; i++)
     {
         a_ele = (zArr[i]<0)? 0 : zArr[i] ;
+        sum+=a_ele;
         a4.push(a_ele);
+    }
+    for(let i=0;i< zArr.length; i++){
+        a4[i] = Math.pow(a4[i]/sum,3);
+        sump3 += a4[i];
+    }
+    for(let i=0;i< zArr.length;i++){
+        a4[i] = a4[i]/sump3;
     }
 }
 

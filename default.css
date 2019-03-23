@@ -1,6 +1,6 @@
 body
 {
-    width: 1400px;
+    width: 1170px;
 }
 
 #info
@@ -54,7 +54,7 @@ body
 
 #output
 {
-    margin-left: 40px;
+    margin-left: 20px;
     margin-top: 50px;
     float: left;
 }
@@ -62,7 +62,7 @@ body
 #myChart
 {
     display: block;
-    width: 800px;
+    width: 700px;
     height: 420px;
     background-color: rgb(127, 255, 255);
 }
