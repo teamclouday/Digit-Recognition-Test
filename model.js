@@ -20,6 +20,7 @@ var myChart = undefined;
 async function transferRects(rectArray)
 {
     z1 = rectArray;
+    
     //math.reshape(math.transpose(math.reshape(rectArray, [len, len])), [size]);
     a1 = [1].concat(z1);
     if(w1.length == 0)
