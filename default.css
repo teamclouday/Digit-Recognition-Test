@@ -25,8 +25,8 @@ body
     background-color: white;
     display: block;
     margin-left: 10px;
-    width: 400px;
-    height: 400px;
+    width: 420px;
+    height: 420px;
 }
 
 #buttons
@@ -63,7 +63,7 @@ body
 {
     display: block;
     width: 800px;
-    height: 400px;
+    height: 420px;
     background-color: rgb(127, 255, 255);
 }
 

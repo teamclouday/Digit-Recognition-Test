@@ -11,11 +11,14 @@ var z3 = [];
 var w1 = [];
 var w2 = [];
 
+var len=28;
+var size=len*len;
+
 var myChart = undefined;
 
 async function transferRects(rectArray)
 {
-    z1 = math.reshape(math.transpose(math.reshape(rectArray, [20, 20])), [400]);
+    z1 = math.reshape(math.transpose(math.reshape(rectArray, [len, len])), [size]);
     a1 = [1].concat(z1);
     if(w1.length == 0)
     {
