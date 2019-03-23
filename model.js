@@ -69,13 +69,12 @@ function loadW(file, num)
     else if(num == 2)
     {
         let nums = file.split('\n');
-        
-            let innerArr = [];
-            for(let j = 0; j < nums.length; j++)
-            {
-                innerArr.push(parseFloat(nums[j]));
-            }
-            b1.push(innerArr);
+        let innerArr = [];
+        for(let j = 0; j < nums.length; j++)
+        {
+            innerArr.push(parseFloat(nums[j]));
+        }
+        b1.push(innerArr);
         
     }
     else if(num == 3)
@@ -94,17 +93,14 @@ function loadW(file, num)
     }
     else if(num == 4)
     {
-        let lines = file.split('\n');
-        for(let i = 0; i < lines.length - 1; i++)
+        let nums = file.split('\n');
+        let innerArr = [];
+        for(let j = 0; j < nums.length; j++)
         {
-            let nums = lines[i].split(",");
-            let innerArr = [];
-            for(let j = 0; j < nums.length; j++)
-            {
-                innerArr.push(parseFloat(nums[j]));
-            }
-            b2.push(innerArr);
+            innerArr.push(parseFloat(nums[j]));
         }
+        b2.push(innerArr);
+        
     }
     else if(num == 5)
     {
@@ -122,17 +118,13 @@ function loadW(file, num)
     }
     else if(num == 6)
     {
-        let lines = file.split('\n');
-        for(let i = 0; i < lines.length - 1; i++)
+        let nums = file.split('\n');
+        let innerArr = [];
+        for(let j = 0; j < nums.length; j++)
         {
-            let nums = lines[i].split(",");
-            let innerArr = [];
-            for(let j = 0; j < nums.length; j++)
-            {
-                innerArr.push(parseFloat(nums[j]));
-            }
-            b3.push(innerArr);
+            innerArr.push(parseFloat(nums[j]));
         }
+        b3.push(innerArr);
     }
     
 }
