@@ -254,19 +254,19 @@ function calcA4(zArr)
 {
     a4 = [];
     sum=0.0;
-    sump3=0.0
+    psum=0.0
     for(let i = 0; i < zArr.length; i++)
     {
-        a_ele = (zArr[i]<0)? 0 : zArr[i] ;
+        a_ele = Math.exp(zArr[i]);
         sum+=a_ele;
         a4.push(a_ele);
     }
     for(let i=0;i< zArr.length; i++){
-        a4[i] = Math.pow(a4[i]/sum,3);
-        sump3 += a4[i];
+        a4[i] = Math.pow(a4[i]/sum,1);
+        psum += a4[i];
     }
     for(let i=0;i< zArr.length;i++){
-        a4[i] = a4[i]/sump3;
+        a4[i] = a4[i]/psum;
     }
 }
 
